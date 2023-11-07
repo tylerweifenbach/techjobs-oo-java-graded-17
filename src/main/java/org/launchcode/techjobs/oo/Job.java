@@ -29,8 +29,6 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
 
     @Override
     public boolean equals(Object o) {
@@ -41,12 +39,28 @@ public class Job {
     }
 
     @Override
+    public String toString() {
+        String nameValue = name.isEmpty() ? "Data not available" : name;
+        String employerValue = employer.toString().isEmpty() ? "Data not available" : employer.toString();
+        String locationValue = location.toString().isEmpty() ? "Data not available" : location.toString();
+        String positionTypeValue = positionType.toString().isEmpty() ? "Data not available" : positionType.toString();
+        String coreCompetencyValue = coreCompetency.toString().isEmpty() ? "Data not available" : coreCompetency.toString();
+
+        return  "\nID: " + id +
+                "\nName: " + nameValue +
+                "\nEmployer: " + employerValue +
+                "\nLocation: " + locationValue +
+                "\nPosition Type: " + positionTypeValue +
+                "\nCore Competency: " + coreCompetencyValue +
+                "\n";
+    }
+
+
+    @Override
     public int hashCode() {
         return Objects.hash(id);
     }
 
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
 
 
     public int getId() {
@@ -58,6 +72,9 @@ public class Job {
     }
 
     public String getName() {
+        if (name == null || name.isEmpty()) {
+            return "Data not available";
+        }
         return name;
     }
 
